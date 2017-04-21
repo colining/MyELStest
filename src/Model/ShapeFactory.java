@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.ShapeListener;
 import util.util;
 
 import java.util.Random;
@@ -9,13 +10,20 @@ import java.util.Random;
  */
 public class ShapeFactory {
 
-    public Shape getshape()
+    public ShapeFactory() {
+    }
+
+    public Shape getShape(ShapeListener shapeListener)
     {
         Shape shape = new Shape();
         int shapekind = (int)(Math.random()*10000%7);
+        //shapekind = 0;
         shape.setBody(util.shape[shapekind]);
+        shape.setShapekind(shapekind);
         int state = (int)(Math.random()*1000%4);
         shape.setState(state);
+        shape.addListenser(shapeListener);
+
         return shape;
     }
 }

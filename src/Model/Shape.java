@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.ShapeListener;
+
 import java.awt.*;
 
 import static util.util.*;
@@ -9,16 +11,44 @@ import static util.util.*;
  */
 public class Shape {
         int top = 0;                    //distance of top
-        int left = 0;                   //distance of left
-    int [][]body;
+        int left = CELLWEITH/2-2;                   //distance of left
+        int [][]body;
+        int shapekind;
+        int state =0;
+        ShapeListener shapeListener;
+    public int getShapekind() {
+        return shapekind;
+    }
 
+    public void setShapekind(int shapekind) {
+        this.shapekind = shapekind;
+    }
+
+
+
+
+    public int getState() {
+        return state;
+    }
+
+
+
+    public Shape() {
+
+    }
+    public void  newThreed()
+    {
+            new Thread(new shapeDriver()).start();
+
+    }
     public void setState(int state) {
         this.state = state;
     }
 
-    int state =0;                     //当前的形状是哪个状态；
+                        //当前的形状是哪个状态；
     public void setBody(int[][] body) {
         this.body = body;
+
     }
 
     public int getTop() {
@@ -56,17 +86,80 @@ public class Shape {
     {
         left++;
     }
-
+    public void rotate()
+    {
+        state = (state+1)%body.length;
+    }
+    public Color getcolor()
+    {
+        Color color = null;
+        switch (shapekind)
+        {
+            case 0: color = new Color(171,71,188);
+            break;
+            case 1: color = new Color(33,150,243);
+            break;
+            case 2: color = new Color(76,175,80);
+            break;
+            case 3: color = new Color(121,85,72);
+            break;
+            case 4: color = new Color(96,125,139);
+            break;
+            case 5: color = new Color(255,87,34);
+            break;
+            case 6: color = new Color(244,143,177);
+            break;
+        }
+        return color;
+    }
     public  void  draw (Graphics g)
     {
 
-        g.setColor(Color.blue);
-        int j =16;
-        for (int i = 0; i < j; i++) {
-            if (body[0][i]==1)
+        g.setColor(getcolor());
+        for (int x = 0 ; x<4; x++)
+            for (int y= 0 ; y<4 ;y++)
             {
-                g.fillRect((i % 4 + left + 1) * 50+53, (i / 4 + top) * 50+32+50, 50, 50);
+                if (getFlagByPos(x,y))
+                g.fill3DRect((left+x)*50+53,(top+y)*50+33,50,50,true);
             }
+    }
+    private boolean getFlagByPos(int x, int y) {
+        return body[state][y*4+x] == 1;
+    }
+    /*
+    对整个边长4的矩形，探测是否有小矩形
+     */
+    public boolean isMember(int x , int y ,boolean rotate)
+    {
+        int temp = state;
+        if (rotate)
+            temp = (state+1)%body.length;
+        return body[temp][y*4+x] ==1;
+    }
+    public void addListenser(ShapeListener shapeListener1)
+    {
+        if (shapeListener1!=null)
+            this.shapeListener = shapeListener1;
+        newThreed();
+    }
+    private class shapeDriver implements  Runnable
+    {
+        @Override
+        public void run() {
+
+            while (shapeListener.shapeIsMoveDownable(Shape.this)) {
+                    down();
+
+
+                    shapeListener.shapeMoveDown(Shape.this);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
         }
     }
+
 }
