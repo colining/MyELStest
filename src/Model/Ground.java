@@ -17,7 +17,6 @@ public class Ground {
     /*
     画障碍物
      */
-
     public void draw(Graphics g)
     {
         for (int i = 0 ; i <CELLWEITH;i++)
@@ -45,6 +44,9 @@ public class Ground {
                 }
         deleteFulline();
     }
+    /*
+    判断是否满行
+     */
     private void deleteFulline()
     {
         for (int y = CELLHEIGTH-1; y>=0; y--)
@@ -59,6 +61,9 @@ public class Ground {
                 deleteLines(y);
         }
     }
+    /*
+    消行
+     */
     private void deleteLines(int LineNum)
     {
         for (int y = LineNum; y>0; y--)
@@ -71,12 +76,13 @@ public class Ground {
                 ground[x][0] = 0;
             }
     }
+    /*
+    是否可以移动吗？
+     */
     public boolean isMoveabel(Shape shape, ShapeAction action)
     {
         int left = shape.getLeft();
-
         int top = shape.getTop();
-
         switch (action)
         {
             case LEFT:
@@ -91,94 +97,61 @@ public class Ground {
             default:
                 break;
         }
-        /*
-        判别该操作是否可行
-         */
-//        for (int x= 0; x<4; x++)
-//        {
-//            for (int y = 0 ; y <4 ; y++)
-//            {
-//                    if (shape.isMember(x,y,action == ShapeAction.ROTATE))
-//                    {
-//                        /*
-//                        高度，宽度，障碍物验证
-//                         */
-//                        if ((top+y >= CELLHEIGTH)||(left +x <0)||((left+x)>CELLWEITH-1)
-//                            ||ground[left+x][top+y]==1)
-//                            return false;
-//                    }
-//            }
-//        }
-
         if (action!=ShapeAction.ROTATE) {
-            for (int x = 0; x < 4; x++)
-                for (int y = 0; y < 4; y++) {
-                    if (shape.isMember(x,y,action == ShapeAction.ROTATE))
-                    {
-                        /*
-                        高度，宽度，障碍物验证
-                         */
-                        if ((top+y >= CELLHEIGTH)||(left +x <0)||((left+x)>CELLWEITH-1)
-                                ||ground[left+x][top+y]==1)
-                            return false;
-                    }
-                }
-                return true;
+            System.out.println("jinru");
+            return canRotate(shape,action,left,top)==0;
         }
-        else if (action==ShapeAction.ROTATE)
-        {
-            int leftbeck = left;
-            while (leftbeck>-2&&leftbeck<4)
-            {
-                for (int x = 0; x < 4; x++)
-                    for (int y = 0; y < 4; y++) {
-                        if (shape.isMember(x,y,action == ShapeAction.ROTATE))
-                        {
-                        /*
-                        高度，宽度，障碍物验证
-                         */
-                            if ((top+y >= CELLHEIGTH)||(leftbeck +x <0)||((leftbeck+x)>CELLWEITH-1)
-                                    ||ground[leftbeck+x][top+y]==1)
-                            {
-
-                            }
-                            else
-                            {
-                                shape.setLeft(leftbeck);
-                                return true;
-                            }
-                        }
-                    }
-                    leftbeck++;
+        else if (action==ShapeAction.ROTATE) {
+            int leftback = left;
+            while (leftback > -3 && leftback < 3) {
+                int flag = 0;
+                System.out.println("假定坐标当前是" + leftback);
+                flag = canRotate(shape,action,leftback,top);
+                if (flag == 0) {
+                    System.out.println("flag为真");
+                    shape.setLeft(leftback);
+                    return true;
+                }
+                    leftback++;
             }
-            while (leftbeck>4&&leftbeck<10)
-            {
-                for (int x = 0; x < 4; x++)
-                    for (int y = 0; y < 4; y++) {
-                        if (shape.isMember(x,y,action == ShapeAction.ROTATE))
-                        {
-                        /*
-                        高度，宽度，障碍物验证
-                         */
-                            if ((top+y >= CELLHEIGTH)||(leftbeck +x <0)||((leftbeck+x)>CELLWEITH-1)
-                                    ||ground[leftbeck+x][top+y]==1)
-                            {
-
-                            }
-                            else
-                            {
-                                shape.setLeft(leftbeck);
-                                return true;
-                            }
-                        }
-                    }
-                leftbeck--;
+            while (leftback > 4 && leftback < 10) {
+                int flag = 0;
+                System.out.println("假定坐标当前是" + leftback);
+                flag = canRotate(shape,action,leftback,top);
+                if (flag == 0) {
+                    System.out.println("flag为真");
+                    shape.setLeft(leftback);
+                    return true;
+                }
+                    leftback--;
             }
-            return false;
+            return canRotate(shape,action,leftback,top)==0;
+
         }
         return true;
     }
+    /*
+    是否可以旋转呢
+     */
+    public int canRotate(Shape shape,ShapeAction action,int left,int top)
+    {
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                if (shape.isMember(x, y, action == ShapeAction.ROTATE)) {
 
+                    if ((top + y >= CELLHEIGTH) || (left + x < 0) || ((left + x) > CELLWEITH - 1)
+                           ||ground[left+x][top+y] ==1 ) {
+                        return 1;
+                    }
+                }
+            }
+        }
+        return 0;
+
+    }
+    /*
+    是不是满了
+     */
     public boolean isFull()
     {
         for (int x= 0 ; x<CELLWEITH;x++)

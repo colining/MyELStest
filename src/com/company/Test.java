@@ -15,12 +15,13 @@ public class Test extends JFrame {
     public Test(){
         int width = 606;
         int height = 1000+32;
+
         this.setSize(width,height);                                         //设置宽高
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                //默认退出
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();  //获取计算机屏幕大小
         this.setLocation((dimension.width-width)/2,(dimension.height-height)/2);    //居中
         this.setResizable(false);               //禁止大小调整
-        this.setTitle("hello world");
+        this.setTitle("俄罗斯方块");
         this.setVisible(true);
         getvar();
     }

@@ -10,10 +10,10 @@ import static util.util.*;
  * Created by asus on 2017/4/17.
  */
 public class Shape {
-        int top = 0;                    //distance of top
-        int left = CELLWEITH/2-2;                   //distance of left
+        int top = 0;
+        int left = CELLWEITH/2-2;
         int [][]body;
-        int shapekind;
+        int shapekind;                                          //形状类型
         int state =0;
         ShapeListener shapeListener;
     public int getShapekind() {
@@ -24,14 +24,9 @@ public class Shape {
         this.shapekind = shapekind;
     }
 
-
-
-
     public int getState() {
         return state;
     }
-
-
 
     public Shape() {
 
@@ -50,7 +45,6 @@ public class Shape {
         this.body = body;
 
     }
-
     public int getTop() {
         return top;
     }
@@ -112,6 +106,9 @@ public class Shape {
         }
         return color;
     }
+    /*
+    绘图形状自身；
+     */
     public  void  draw (Graphics g)
     {
 
@@ -123,11 +120,14 @@ public class Shape {
                 g.fill3DRect((left+x)*50+53,(top+y)*50+33,50,50,true);
             }
     }
+    /*
+    判定当前是否存在矩形
+     */
     private boolean getFlagByPos(int x, int y) {
         return body[state][y*4+x] == 1;
     }
     /*
-    对整个边长4的矩形，探测是否有小矩形
+    对整个边长4的矩形，探测是否有小矩形，如果当前是旋转，便探测旋转后的
      */
     public boolean isMember(int x , int y ,boolean rotate)
     {
@@ -149,8 +149,6 @@ public class Shape {
 
             while (shapeListener.shapeIsMoveDownable(Shape.this)) {
                     down();
-
-
                     shapeListener.shapeMoveDown(Shape.this);
                     try {
                         Thread.sleep(1000);
