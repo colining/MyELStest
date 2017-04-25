@@ -1,7 +1,6 @@
-package Controller;
+package com.company.controller;
 
-import Model.Shape;
-
+import com.company.model.*;
 /**
  * Created by asus on 2017/4/20.
  */

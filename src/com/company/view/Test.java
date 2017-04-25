@@ -1,7 +1,7 @@
-package com.company;
+package com.company.view;
 
-import Model.*;
-import Model.Shape;
+import com.company.model.*;
+import com.company.model.Shape;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +9,10 @@ import java.awt.*;
 public class Test extends JFrame {
     static int top,left,bottom,right,height,width;
 
-
     Shape shape ;
     Ground ground;
+
+
     public Test(){
         int width = 606;
         int height = 1000+32;
@@ -28,7 +29,7 @@ public class Test extends JFrame {
 
     void getvar(){
         Insets insets = this.getInsets();
-
+        System.out.println(insets.toString());
         top = insets.top;
         left = insets.left;
         right = insets.right;
@@ -62,14 +63,13 @@ public class Test extends JFrame {
             g.drawLine(x1,y1,x1,height);
             x1+=sidelengh;
         }
-        g.setColor(Color.YELLOW);
+        g.setColor(new Color(38,50,56));
         g.fill3DRect(x1,top,sidelengh,height,true);
         g.fill3DRect(0,top,sidelengh+right+1,height,true);
         if (shape!=null&&ground!=null) {
             shape.draw(g);
             ground.draw(g);
         }
-
     }
 
     @Override

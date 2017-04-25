@@ -1,3 +1,5 @@
+package com.company.test;
+
 /**
  * Created by asus on 2017/4/21.
  */
@@ -20,9 +22,8 @@ public class TestRunnbel {
     }
     int a = 5;
 
-    public static  TestRunnbel getTestRunnbel()
-    {
-        if (testRunnbel ==null) {
+    public static  TestRunnbel getTestRunnbel() {
+        if (testRunnbel == null) {
             testRunnbel = new TestRunnbel(10);
         }
         return testRunnbel;
@@ -32,8 +33,7 @@ public class TestRunnbel {
         new Thread(new run()).start();
     }
 
-    public  void d()
-    {
+    public  void d() {
         a--;
     }
 

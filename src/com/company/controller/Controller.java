@@ -1,12 +1,8 @@
-package Controller;
+package com.company.controller;
 
-import Model.Ground;
-import Model.Shape;
-import Model.ShapeFactory;
-import com.company.Test;
-import com.company.MyEnum.ShapeAction;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
+import com.company.model.*;
+import com.company.myenum.ShapeAction;
+import com.company.view.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -34,13 +30,13 @@ public class Controller extends KeyAdapter implements  ShapeListener{
         this.test = test;
     }
 
-    public static void main(String []arg)
-   {
-       Test test = new Test();
-       Controller controller =  new Controller( new Ground(),new ShapeFactory(),test);
-       test.addKeyListener(controller);
-       controller.newGame();
-   }
+    public static void main(String[] args) {
+        Test test = new Test();
+        Controller controller = new Controller( new Ground() , new ShapeFactory(), test);
+        test.addKeyListener(controller);
+        controller.newGame();
+    }
+
     public void newGame()
     {
         shape = shapeFactory.getShape(this);
@@ -57,7 +53,7 @@ public class Controller extends KeyAdapter implements  ShapeListener{
         {
             return false;
         }
-        if (ground.isMoveabel(shape,ShapeAction.DOWN)) {
+        if (ground.isMoveabel(shape, ShapeAction.DOWN)) {
             return true;
         }
         ground.add(this.shape);
@@ -89,5 +85,6 @@ public class Controller extends KeyAdapter implements  ShapeListener{
         }
         test.display(ground,shape);
     }
+
 
 }

@@ -1,9 +1,7 @@
-package Model;
+package com.company.model;
 
-import Controller.ShapeListener;
+import com.company.controller.ShapeListener;
 import util.util;
-
-import java.util.Random;
 
 /**
  * Created by asus on 2017/4/17.

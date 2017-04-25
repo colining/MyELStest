@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MyELStest:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyELStest_jar</output-path>
+    <root id="archive" name="MyELStest.jar">
+      <element id="module-output" name="MyELStest" />
+    </root>
+  </artifact>
+</component>

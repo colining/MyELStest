@@ -6,6 +6,7 @@ package util;
 public  class util {
     public  static final int CELLWEITH = 10;
     public  static final int CELLHEIGTH = 19;
+    public  static  final  int SIDEWEITH = 50;
     public static final int [][][] shape ={
             // i
             { { 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 },

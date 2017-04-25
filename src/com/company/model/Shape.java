@@ -1,11 +1,11 @@
-package Model;
+package com.company.model;
 
-import Controller.ShapeListener;
+
 
 import java.awt.*;
 
 import static util.util.*;
-
+import com.company.controller.*;
 /**
  * Created by asus on 2017/4/17.
  */
@@ -117,7 +117,7 @@ public class Shape {
             for (int y= 0 ; y<4 ;y++)
             {
                 if (getFlagByPos(x,y))
-                g.fill3DRect((left+x)*50+53,(top+y)*50+33,50,50,true);
+                g.fill3DRect((left+x)*50+50,(top+y)*50,50,50,true);
             }
     }
     /*

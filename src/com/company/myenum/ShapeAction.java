@@ -1,4 +1,4 @@
-package com.company.MyEnum;
+package com.company.myenum;
 
 /**
  * Created by asus on 2017/4/20.

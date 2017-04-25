@@ -1,12 +1,11 @@
-package Model;
+package com.company.model;
 
-import com.company.MyEnum.ShapeAction;
+import com.company.myenum.ShapeAction;
 
 import java.awt.*;
 
 import static util.util.CELLHEIGTH;
 import static util.util.CELLWEITH;
-import static util.util.shape;
 
 /**
  * Created by asus on CELLHEIGTH17/4/17.
@@ -26,7 +25,7 @@ public class Ground {
                 {
 
                     g.setColor(new Color(0,150,136));
-                    g.fill3DRect(i*50+53,j*50+32+50,50,50,true);
+                    g.fill3DRect(i*50+50,j*50+50,50,50,true);
 
                 }
             }
