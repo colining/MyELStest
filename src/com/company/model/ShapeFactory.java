@@ -7,7 +7,15 @@ import util.util;
  * Created by asus on 2017/4/17.
  */
 public class ShapeFactory {
+    /**
+     * 形状工厂，用来创建不同的形状，
+     * @return
+     */
+    public Shape getCurrentShape() {
+        return currentShape;
+    }
 
+    Shape currentShape = null;
     public ShapeFactory() {
     }
 
@@ -21,7 +29,25 @@ public class ShapeFactory {
         int state = (int)(Math.random()*1000%4);
         shape.setState(state);
         shape.addListenser(shapeListener);
-
+        currentShape = shape;
         return shape;
+    }
+    /*
+    暂停下降
+     */
+    public void  stopDown()
+    {
+        try {
+            currentShape.stopThread();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    /*
+    线程继续
+     */
+    public void continueThread()
+    {
+        currentShape.continueThread();
     }
 }

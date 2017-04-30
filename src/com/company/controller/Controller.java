@@ -30,12 +30,12 @@ public class Controller extends KeyAdapter implements  ShapeListener{
         this.test = test;
     }
 
-    public static void main(String[] args) {
-        Test test = new Test();
-        Controller controller = new Controller( new Ground() , new ShapeFactory(), test);
-        test.addKeyListener(controller);
-        controller.newGame();
-    }
+//    public static void main(String[] args) {
+//        Test test = new Test();
+//        Controller controller = new Controller( new Ground() , new ShapeFactory(), test);
+//        test.addKeyListener(controller);
+//        controller.newGame();
+//    }
 
     public void newGame()
     {

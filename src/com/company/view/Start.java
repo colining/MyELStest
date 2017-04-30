@@ -7,6 +7,9 @@ import java.awt.*;
  * Created by asus on 2017/4/22.
  */
 public class Start extends JFrame{
+    /**
+     * 主要Jframe
+     */
 
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 1032;
@@ -22,9 +25,4 @@ public class Start extends JFrame{
     public static void main(String[] args) {
         Start start = new Start();
     }
-
-
-
-
-
 }

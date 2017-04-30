@@ -19,5 +19,6 @@ public class DoubleJpanelTest extends JPanel{
         jPanel1.add(new Button("test2"));
         testframe.add(jPanel,BorderLayout.SOUTH);
         testframe.add(jPanel1,BorderLayout.NORTH);
+
     }
 }

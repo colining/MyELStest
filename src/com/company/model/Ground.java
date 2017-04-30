@@ -3,6 +3,7 @@ package com.company.model;
 import com.company.myenum.ShapeAction;
 
 import java.awt.*;
+import java.io.Serializable;
 
 import static util.util.CELLHEIGTH;
 import static util.util.CELLWEITH;
@@ -10,9 +11,17 @@ import static util.util.CELLWEITH;
 /**
  * Created by asus on CELLHEIGTH17/4/17.
  */
-public class Ground {
+public class Ground implements Serializable{
     private int [][] ground = new int[CELLWEITH][CELLHEIGTH];
 
+    public void setGround(int[][] ground) {
+
+        this.ground = ground;
+    }
+    public void clearFround()
+    {
+        ground = new int[CELLWEITH][CELLHEIGTH];
+    }
     /*
     画障碍物
      */

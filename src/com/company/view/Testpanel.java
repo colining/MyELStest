@@ -6,11 +6,13 @@ import com.company.model.Shape;
 import javax.swing.*;
 import java.awt.*;
 
+import static util.util.SIDEWEITH;
+
 /**
  * Created by asus on 2017/4/22.
  */
 public class Testpanel extends JPanel{
-   // static int top,left,bottom,right,height,width;
+    //游戏的画面
     static int height,width,top;
     Shape shape;
     Ground ground;
@@ -19,33 +21,44 @@ public class Testpanel extends JPanel{
     public Testpanel() {
         int width = 600;
         int height = 1000;
-        this.setSize(width,height);                                         //设置宽高
-//        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();  //获取计算机屏幕大小
-//        this.setLocation((dimension.width-width)/2,(dimension.height-height)/2);    //居中
+        this.setSize(width,height);
         this.setVisible(true);
         getvar();
     }
 
     void getvar(){
+        /**
+         * 初始化一些数据
+         */
         Insets insets = this.getInsets();
         height = this.getHeight();
         width = this.getWidth();
         top = 32;
         System.out.println(insets.toString());
     }
+
     public void display(Ground ground , Shape shape)
     {
+        /**
+         * 重画
+         */
         this.shape  = shape;
         this.ground = ground;
         this.repaint();
 
     }
     public void update(Graphics g){
+        /*
+        防止画面闪烁什么的
+         */
             paint(g);
     }
     public void paint(Graphics g) {
+        /*
+        绘制游戏界面
+         */
         super.paint(g);
-        int sidelengh = 50;                                         //边长
+        int sidelengh = SIDEWEITH;                                         //边长
         int x1 = sidelengh, y1 =0;
         for (int i = 0; i < 20; i++) {
              //g.drawLine(x1, y1, width - x1, y1);

@@ -7,11 +7,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Test extends JFrame {
+    /**
+     * Jframe下的游戏
+     */
     static int top,left,bottom,right,height,width;
 
     Shape shape ;
     Ground ground;
-
 
     public Test(){
         int width = 606;
